@@ -16,11 +16,21 @@ public class ShiftWorker {
     }
 
     public ShiftWorker(String name, String gender, int Shift, int age){
-        this.name=name;
-        this.gender=gender;
-        this.Shift=Shift;
-        this.age=age;
-    }
+            if (name.length() < 6 || name.length() > 21) {
+                System.out.println("Invalid Name Length");
+                this.name = "";
+            }
+            if (Shift < 1 || Shift > 2) {
+                System.out.println("Invalid Shift Selection");
+            }
+            if (age < 18) {
+                System.out.println("Invalid Age");
+            }
+            this.name = name;
+            this.gender = gender;
+            this.Shift = Shift;
+            this.age = age;
+        }
 
     public void setName(){
         int x=0;
@@ -47,7 +57,7 @@ public class ShiftWorker {
             while (x == 0) {
                 try {
                     Scanner scanner = new Scanner(System.in);
-                    System.out.println("Please enter Gender:\n1-Male\n2-Female\n3-Non Binary");
+                    System.out.println("Please enter Gender:\n1- Male\n2- Female\n3- Non-Binary");
                     int input = Integer.parseInt(scanner.nextLine());
                     if (input == 1) {
                         this.gender = "Male";
@@ -119,8 +129,15 @@ public class ShiftWorker {
         return age;
     }
 
+    public void printInfo(){
+        System.out.println("Name: "+name);
+        System.out.println("Gender: "+gender);
+        System.out.println("Shift: "+Shift);
+        System.out.println("Age: "+ age);
+    }
+
     @Override
-    public java.lang.String toString() {
+    public String toString() {
         return super.toString() + "Worker Name: " + name + "\nWorker Gender: " + gender + "Worker Shift: "+ Shift + "Worker Age: " + age;
 
     }
