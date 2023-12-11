@@ -23,15 +23,18 @@ public class ShiftWorker {
     }
 
     public void setName(){
+        int x=0;
+        while(x==0) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Please enter Worker name: ");
             String input = scanner.nextLine();
             if (input.length() < 6 || input.length() > 21) {
                 System.out.println("Invalid Name length");
+            } else {
+                this.name = input;
+                x++;
             }
-            else{
-                this.name=input;
-            }
+        }
     }
 
     public String getName(){
@@ -39,18 +42,29 @@ public class ShiftWorker {
     }
 
     public void setGender(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Are you Male, Female or Non-Binary");
-        String input=scanner.nextLine();
-        if(input == "Male"){
-            this.gender="Male";
-        }
-        else if (input == "Female"){
-            this.gender="Female";
-        }
-        else if(input == "Non-Binary"){
-            this.gender="Non-Binary";
-        }
+        int x = 0;
+
+            while (x == 0) {
+                try {
+                    Scanner scanner = new Scanner(System.in);
+                    System.out.println("Please enter Gender:\n1-Male\n2-Female\n3-Non Binary");
+                    int input = Integer.parseInt(scanner.nextLine());
+                    if (input == 1) {
+                        this.gender = "Male";
+                        x++;
+                    } else if (input == 2) {
+                        this.gender = "Female";
+                        x++;
+                    } else if (input == 3) {
+                        this.gender = "Non-Binary";
+                        x++;
+                    } else {
+                        System.out.println("Invalid Input");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid Numerical Value");
+                }
+            }
     }
 
     public String getGender(){
@@ -101,6 +115,13 @@ public class ShiftWorker {
         }
     }
 
+    public int getAge(){
+        return age;
+    }
 
+    @Override
+    public java.lang.String toString() {
+        return super.toString() + "Worker Name: " + name + "\nWorker Gender: " + gender + "Worker Shift: "+ Shift + "Worker Age: " + age;
 
+    }
 }
